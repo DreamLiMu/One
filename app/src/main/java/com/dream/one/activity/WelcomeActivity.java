@@ -21,7 +21,7 @@ import com.dream.one.view.ViewPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import dream.com.one.R;
+import com.dream.one.R;
 
 /**
  * Created by CNKI-0000 on 2015/11/23.

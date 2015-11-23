@@ -23,10 +23,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-<<<<<<< HEAD
-    compile 'com.android.support:appcompat-v7:23.1.0'
-=======
+
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.romainpiel.shimmer:library:1.4.0@aar'
->>>>>>> bf6051ccd43390fc9b4a4e9156a23b1d79eecbf3
 }

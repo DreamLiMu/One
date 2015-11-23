@@ -14,7 +14,7 @@ import android.view.WindowManager;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
-import dream.com.one.R;
+import com.dream.one.R;
 
 public class MainActivity extends Activity {
 
