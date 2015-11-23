@@ -1,19 +1,22 @@
 package com.dream.one.activity;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
+
+import com.dream.one.view.DepthPageTransformer;
+import com.dream.one.view.ViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +26,9 @@ import dream.com.one.R;
 /**
  * Created by CNKI-0000 on 2015/11/23.
  */
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends Activity implements View.OnClickListener{
 
+    Context context;
     ViewPager viewPager;
     LayoutInflater inflater;
     View view1;
@@ -40,6 +44,7 @@ public class WelcomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        context = getApplicationContext();
         initView();
 
         initDots();
@@ -51,9 +56,10 @@ public class WelcomeActivity extends Activity {
         dots = new ImageView[viewList.size()];
         for (int i = 0; i< dots.length; i++){
             dots[i] = (ImageView) ll.getChildAt(i);
-            dots[i].setBackgroundColor(Color.GRAY);
 
+            dots[i].setBackgroundColor(Color.GRAY);
             currentIndex = 0;
+
             dots[currentIndex].setBackgroundColor(Color.DKGRAY);
         }
     }
@@ -63,11 +69,28 @@ public class WelcomeActivity extends Activity {
                 || currentIndex == position) {
             return;
         }
-
+        // 设置indicator动画
+        ObjectAnimator.ofFloat(dots[position], "scaleX", 0.0f, 1.0f)
+                .setDuration(200)
+                .start();
         dots[position].setBackgroundColor(Color.DKGRAY);
+        ObjectAnimator.ofFloat(dots[currentIndex],"scaleX",0.0f,1.0f)
+                .setDuration(200)
+                .start();
         dots[currentIndex].setBackgroundColor(Color.GRAY);
 
         currentIndex = position;
+
+        if(position == viewList.size() - 1){
+            Button btn_ex = (Button) findViewById(R.id.btn_exper);
+            btn_ex.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(context,OneActivity.class));
+                    finish();
+                }
+            });
+        }
     }
 
     public void initView(){
@@ -82,46 +105,8 @@ public class WelcomeActivity extends Activity {
         viewList.add(view3);
 
 
-        PagerAdapter pagerAdapter = new PagerAdapter() {
-            @Override
-            public int getCount() {
-                return viewList.size();
-            }
-
-            @Override
-            public boolean isViewFromObject(View view, Object object) {
-                return view == object;
-            }
-
-            @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-                container.removeView(viewList.get(position));
-            }
-
-            @Override
-            public int getItemPosition(Object object) {
-                return super.getItemPosition(object);
-            }
-
-            @Override
-            public Object instantiateItem(ViewGroup container, int position) {
-                container.addView(viewList.get(position));
-                if(position == 2){
-                    Button btn_ex = (Button) findViewById(R.id.btn_exper);
-                    btn_ex.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(WelcomeActivity.this,OneActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    });
-                }
-                return viewList.get(position);
-            }
-        };
-
-        viewPager.setAdapter(pagerAdapter);
+        viewPager.setAdapter(new ViewPagerAdapter(context, viewList));
+        viewPager.setPageTransformer(true, new DepthPageTransformer());
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -131,6 +116,7 @@ public class WelcomeActivity extends Activity {
             @Override
             public void onPageSelected(int position) {
                 setCurrentDot(position);
+                Toast.makeText(context,dots[position].getId()+"",1000).show();
             }
 
             @Override
@@ -138,5 +124,24 @@ public class WelcomeActivity extends Activity {
 
             }
         });
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.indcator_1:
+                viewPager.setCurrentItem(0);
+                break;
+            case R.id.indcator_2:
+                viewPager.setCurrentItem(1);
+                break;
+            case R.id.indcator_3:
+                viewPager.setCurrentItem(2);
+                break;
+            default:
+                break;
+
+        }
     }
 }

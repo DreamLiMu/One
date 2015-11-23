@@ -20,25 +20,31 @@
         android:layout_alignParentBottom="true"
         android:paddingBottom="50dip">
         <ImageView
+            android:id="@+id/indcator_1"
             android:layout_width="10dip"
             android:layout_height="10dip"
             android:layout_gravity="center_vertical"
             android:clickable="true"
-            android:background="#a6aba9"/>
+            android:background="#a6aba9"
+            android:onClick="onClick"/>
         <ImageView
+            android:id="@+id/indcator_2"
             android:layout_width="10dip"
             android:layout_height="10dip"
             android:layout_gravity="center_vertical"
             android:clickable="true"
             android:layout_marginLeft="30dip"
             android:layout_marginRight="30dip"
-            android:background="#a6aba9"/>
+            android:background="#a6aba9"
+            android:onClick="onClick"/>
         <ImageView
+            android:id="@+id/indcator_3"
             android:layout_width="10dip"
             android:layout_height="10dip"
             android:layout_gravity="center_vertical"
             android:clickable="true"
-            android:background="#a6aba9"/>
+            android:background="#a6aba9"
+            android:onClick="onClick"/>
     </LinearLayout>
 
 </RelativeLayout>
