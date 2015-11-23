@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+*.iml
+>>>>>>> bf6051ccd43390fc9b4a4e9156a23b1d79eecbf3
 .gradle
 /local.properties
 /.idea/workspace.xml
