@@ -13,15 +13,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.ViewAnimator;
 
+import com.dream.one.R;
 import com.dream.one.view.DepthPageTransformer;
 import com.dream.one.view.ViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dream.one.R;
 
 /**
  * Created by CNKI-0000 on 2015/11/23.
@@ -86,7 +85,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
             btn_ex.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(context,OneActivity.class));
+                    startActivity(new Intent(context, BaseActivity.class));
                     finish();
                 }
             });
@@ -116,7 +115,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
             @Override
             public void onPageSelected(int position) {
                 setCurrentDot(position);
-                Toast.makeText(context,dots[position].getId()+"",1000).show();
+                Toast.makeText(context, dots[position].getId() + "", Toast.LENGTH_SHORT).show();
             }
 
             @Override
