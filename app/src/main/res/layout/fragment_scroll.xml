@@ -27,6 +27,17 @@
                 android:layout_height="1000dp"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/btn_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="变化" />
+
+                <TextView
+                    android:id="@+id/http"
+                    android:text="HTTPCLIENT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
