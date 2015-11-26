@@ -3,7 +3,6 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-<<<<<<< HEAD
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -11,8 +10,6 @@
       </MavenGeneralSettings>
     </option>
   </component>
-=======
->>>>>>> bf6051ccd43390fc9b4a4e9156a23b1d79eecbf3
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
@@ -47,11 +44,8 @@
         </expanded-state>
         <selected-state>
           <State>
-<<<<<<< HEAD
             <id>Android</id>
-=======
             <id>Abstraction issues</id>
->>>>>>> bf6051ccd43390fc9b4a4e9156a23b1d79eecbf3
           </State>
         </selected-state>
       </profile-state>
@@ -67,17 +61,12 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-=======
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
->>>>>>> bf6051ccd43390fc9b4a4e9156a23b1d79eecbf3
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
-<<<<<<< HEAD
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
@@ -105,6 +94,4 @@
       </state>
     </states>
   </component>
-=======
->>>>>>> bf6051ccd43390fc9b4a4e9156a23b1d79eecbf3
 </project>
