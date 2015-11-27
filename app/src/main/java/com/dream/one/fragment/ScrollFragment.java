@@ -86,7 +86,7 @@ public class ScrollFragment extends Fragment {
                         final Callback callback = new Callback() {
                             @Override
                             public void onFailure(Request request, IOException e) {
-
+                                e.printStackTrace();
                             }
 
                             @Override
