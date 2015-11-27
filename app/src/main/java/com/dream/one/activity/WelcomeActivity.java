@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.dream.one.R;
 import com.dream.one.view.DepthPageTransformer;
-import com.dream.one.view.ViewPagerAdapter;
+import com.dream.one.adapter.ViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

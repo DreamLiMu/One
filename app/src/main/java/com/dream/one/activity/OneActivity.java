@@ -9,14 +9,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.dream.one.R;
+import com.dream.one.common.Common;
 import com.dream.one.fragment.RecyclerViewFragment;
-import com.dream.one.fragment.ScrollFragment;
-import com.dream.one.fragment.WebViewFragment;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
@@ -33,7 +33,6 @@ public class OneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one);
-
 
         // 初始化viewpager
         initViewPager();
@@ -64,14 +63,14 @@ public class OneActivity extends AppCompatActivity {
             @Override
             public Fragment getItem(int position) {
                 switch (position % 4) {
-                    case 0:
+                    /*case 0:
                         return RecyclerViewFragment.newInstance();
                     case 1:
                         return ScrollFragment.newInstance();
                     case 2:
                         return WebViewFragment.newInstance();
                     case 3:
-                        return WebViewFragment.newInstance();
+                        return WebViewFragment.newInstance();*/
                     default:
                         return RecyclerViewFragment.newInstance();
                 }
@@ -79,29 +78,20 @@ public class OneActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                return 4;
+                return Common.classifies.length;
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
-                switch (position % 4) {
-                    case 0:
-                        return "推荐";
-                    case 1:
-                        return "段子手";
-                    case 2:
-                        return "养生堂";
-                    case 3:
-                        return "体育";
-                }
-                return "";
+
+                return Common.classifies[position].name;
             }
         });
 
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
-                switch (page) {
+                switch (page % 4) {
                     case 0:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.green,
