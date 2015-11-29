@@ -21,18 +21,103 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CardView测试"
-                android:textSize="20dip" />
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageView
+                android:id="@+id/iv_big_contentImg"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_action_cloud" />
+                android:layout_height="120dp"
+                android:padding="5dp"
+                android:background="@color/black_overlay"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/flying" />
+
+            <TextView
+                android:id="@+id/tv_big_title"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp"
+                android:text="杨幂关注胡歌是小事，胡歌的后宫和谐才是大事!"
+                android:textColor="@color/black_overlay" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp">
+
+                <com.joooonho.SelectableRoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/iv_big_userlogo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_3d_rotation_black_18dp"
+                    app:sriv_border_color="#eee"
+                    app:sriv_border_width="2dip"
+                    app:sriv_left_bottom_corner_radius="48dip"
+                    app:sriv_left_top_corner_radius="16dip"
+                    app:sriv_oval="true"
+                    app:sriv_right_bottom_corner_radius="16dip"
+                    app:sriv_right_top_corner_radius="0dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text=" | "
+                    android:textColor="@color/half_black" />
+
+                <TextView
+                    android:id="@+id/tv_big_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="巴拉莎莎"
+                    android:textColor="@color/fu_color"
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_big_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:drawablePadding="3dp"
+                        android:drawableRight="@drawable/ic_loyalty_black_18dp"
+                        android:gravity="right"
+                        android:paddingRight="10dp"
+                        android:text="段子手"
+                        android:textColor="@color/half_black"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tv_big_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="3dp"
+                        android:drawableRight="@drawable/ic_accessible_black_18dp"
+                        android:layout_gravity="center|right"
+                        android:paddingRight="10dp"
+                        android:text="19分钟前"
+                        android:textColor="@color/half_black"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
