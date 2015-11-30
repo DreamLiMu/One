@@ -9,21 +9,21 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.dream.one.R;
 import com.dream.one.common.Common;
 import com.dream.one.fragment.RecyclerViewFragment;
-import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OneActivity extends AppCompatActivity {
 
@@ -36,7 +36,6 @@ public class OneActivity extends AppCompatActivity {
     Toolbar toolbar;
     FrameLayout rootView;
     FloatingActionMenu fam;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,18 +73,8 @@ public class OneActivity extends AppCompatActivity {
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                switch (position % 4) {
-                    /*case 0:
-                        return RecyclerViewFragment.newInstance();
-                    case 1:
-                        return ScrollFragment.newInstance();
-                    case 2:
-                        return WebViewFragment.newInstance();
-                    case 3:
-                        return WebViewFragment.newInstance();*/
-                    default:
-                        return RecyclerViewFragment.newInstance();
-                }
+                Fragment fragment = RecyclerViewFragment.newInstance(position);
+                return fragment;
             }
 
             @Override
@@ -97,6 +86,11 @@ public class OneActivity extends AppCompatActivity {
             public CharSequence getPageTitle(int position) {
 
                 return Common.classifies[position].name;
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                super.destroyItem(container, position, object);
             }
         });
 

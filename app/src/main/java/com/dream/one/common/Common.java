@@ -12,8 +12,8 @@ public class Common {
     // &showapi_appid=12973
     // &showapi_timestamp=20151127102732
     // &showapi_sign=c85e466b303746beb6c5ba74ebd7cfa2
-    public static final String CLASSIFY_URL = "http://route.showapi.com/582-1";
-    public static final String ID_SEARCH_URL = "http://route.showapi.com/582-5";
+    public static final String CLASSIFY_URL = "http://route.showapi.com/582-1?";
+    public static final String ID_SEARCH_URL = "http://route.showapi.com/582-5?";
     //https://route.showapi.com/582-2?
     // key=关键词
     // &page=
@@ -21,7 +21,7 @@ public class Common {
     // &showapi_timestamp=20151127102732
     // &typeId=0 分类码
     // &showapi_sign=c85e466b303746beb6c5ba74ebd7cfa2
-    public static final String ARTICLE_CLASSIFY_URL = "http://route.showapi.com/582-2";
+    public static final String ARTICLE_CLASSIFY_URL = "http://route.showapi.com/582-2?";
 
     public static final Classify[] classifies = {
             new Classify("0", "热点"),

@@ -21,6 +21,10 @@ import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.security.Timestamp;
 import java.util.Date;
@@ -50,7 +54,7 @@ public class ScrollFragment extends Fragment {
             super.handleMessage(msg);
             if (msg.what == 1) {
                 String res = msg.getData().getString("res");
-                tv.setText(new Date().getTime() + "");
+                //tv.setText(new Date().getTime() + "");
                 tv.setText(res);
                 btn_change.setText("完成");
             }
@@ -82,7 +86,7 @@ public class ScrollFragment extends Fragment {
                         final String url = "http://route.showapi.com/582-1?showapi_appid="
                                 + APP_ID
                                 + "&showapi_timestamp=" + new Date().getTime()
-                                + "&id=&showapi_sign=" + secret;
+                                + "&showapi_sign=" + secret;
                         final Callback callback = new Callback() {
                             @Override
                             public void onFailure(Request request, IOException e) {
@@ -93,11 +97,20 @@ public class ScrollFragment extends Fragment {
                             public void onResponse(Response response) throws IOException {
                                 if (response.isSuccessful()) {
                                     String res = response.body().string();
-                                    Message msg = new Message();
-                                    msg.what = 1;
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("res", res);
-                                    mHandler.sendMessage(msg);
+                                    JSONObject jsonObject;
+                                    try {
+                                        jsonObject = new JSONObject(res);
+                                        JSONObject obj = jsonObject.getJSONObject("showapi_res_body");
+                                        JSONArray jsonArray = obj.getJSONArray("typeList");
+                                        Message msg = new Message();
+                                        msg.what = 1;
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("res", jsonArray.toString());
+                                        msg.setData(bundle);
+                                        mHandler.sendMessage(msg);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             }
                         };
