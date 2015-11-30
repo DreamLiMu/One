@@ -12,14 +12,14 @@ import java.util.List;
 /**
  * Created by florentchampigny on 24/04/15.
  */
-public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     List<Object> contents;
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
 
-    public TestRecyclerViewAdapter(List<Object> contents) {
+    public RecyclerViewAdapter(List<Object> contents) {
         this.contents = contents;
     }
 
@@ -27,9 +27,9 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     public int getItemViewType(int position) {
         switch (position) {
             case 0:
-                return TYPE_HEADER;
-            default:
                 return TYPE_CELL;
+            default:
+                return TYPE_HEADER;
         }
     }
 

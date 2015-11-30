@@ -12,11 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.dream.one.R;
 import com.dream.one.common.Common;
 import com.dream.one.fragment.RecyclerViewFragment;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
@@ -29,20 +34,27 @@ public class OneActivity extends AppCompatActivity {
     DrawerLayout mDrawer;
     ActionBarDrawerToggle mDrawerToggle;
     Toolbar toolbar;
+    FrameLayout rootView;
+    FloatingActionMenu fam;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_one);
 
+        setContentView(R.layout.activity_one);
         // 初始化viewpager
         initViewPager();
     }
 
     // 初始化viewpager方法
     protected void initViewPager() {
+
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
         toolbar = mViewPager.getToolbar();
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        fam = (FloatingActionMenu) findViewById(R.id.menu);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);

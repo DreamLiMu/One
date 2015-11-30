@@ -99,7 +99,7 @@
                         android:drawableRight="@drawable/ic_loyalty_black_18dp"
                         android:gravity="right"
                         android:paddingRight="10dp"
-                        android:text="端子手"
+                        android:text="段子手"
                         android:textColor="@color/half_black"
                         android:textSize="10sp" />
 
