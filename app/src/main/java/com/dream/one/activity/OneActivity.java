@@ -25,7 +25,7 @@ import com.github.florent37.materialviewpager.header.HeaderDesign;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OneActivity extends AppCompatActivity {
+public class OneActivity extends BaseActivity {
 
     Context context;
 
@@ -34,13 +34,10 @@ public class OneActivity extends AppCompatActivity {
     DrawerLayout mDrawer;
     ActionBarDrawerToggle mDrawerToggle;
     Toolbar toolbar;
-    FrameLayout rootView;
-    FloatingActionMenu fam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_one);
         // 初始化viewpager
         initViewPager();
@@ -52,8 +49,6 @@ public class OneActivity extends AppCompatActivity {
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
         toolbar = mViewPager.getToolbar();
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        fam = (FloatingActionMenu) findViewById(R.id.menu);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);

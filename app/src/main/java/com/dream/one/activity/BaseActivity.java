@@ -1,20 +1,23 @@
 package com.dream.one.activity;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.dream.one.R;
 import com.dream.one.common.AppLog;
 import com.dream.one.common.AppManager;
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
-public abstract class BaseActivity extends AppCompatActivity
-        implements View.OnClickListener {
+public class BaseActivity extends AppCompatActivity {
 
     private static final int ACTIVITY_RESUME = 0;
     private static final int ACTIVITY_STOP = 1;
@@ -24,18 +27,13 @@ public abstract class BaseActivity extends AppCompatActivity
     public int activityState;
     //是否允许全屏
     private boolean mAllowFullScreen = true;
-
-    public abstract void initViews();
-
-    public abstract void viewsClick(View view);
+    private FrameLayout rootView;
+    private LinearLayout parentView;
+    private FloatingActionMenu fam;
+    private FloatingActionButton save_Fab;
 
     public void setAllowFullScreen(boolean allowFullScreen) {
         this.mAllowFullScreen = allowFullScreen;
-    }
-
-    @Override
-    public void onClick(View view) {
-        viewsClick(view);
     }
 
     /*****************************************
@@ -43,18 +41,55 @@ public abstract class BaseActivity extends AppCompatActivity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        AppLog.debug(this.getClass() + "--------onCreate");
-        // 竖屏锁定
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // 竖屏锁定,必须在最前面
         if (mAllowFullScreen) {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
+        super.onCreate(savedInstanceState);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        initContentView(R.layout.activity_base);
+
+        initViews();
+        initListener();
         AppManager.getManager().addActivity(this);
 
-        //initViews();
-        super.onCreate(savedInstanceState);
+    }
 
+    // 初始化其他的view
+    public void initViews(){
+        save_Fab = (FloatingActionButton) findViewById(R.id.fab_save);
+    }
+
+    public void initListener(){
+        save_Fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(),"点击了Save按钮。。。",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void initContentView(int resId) {
+        ViewGroup viewGroup = (ViewGroup) findViewById(android.R.id.content);
+        viewGroup.removeAllViews();
+        rootView = (FrameLayout) getLayoutInflater().from(this).inflate(resId,null);
+        viewGroup.addView(rootView);
+        parentView = (LinearLayout) findViewById(R.id.content_ly);
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        LayoutInflater.from(this).inflate(layoutResID, parentView, true);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        parentView.addView(view);
+    }
+
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        parentView.addView(view, params);
     }
 
     @Override
@@ -95,6 +130,6 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onDestroy();
         activityState = ACTIVITY_DESTROY;
         AppLog.state(this.getClass(), "----------------onDestroy");
-        AppManager.getManager().removeActivity(this);
+        AppManager.getManager().finishActivity(this);
     }
 }
